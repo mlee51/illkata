@@ -1,0 +1,46 @@
+{
+  "errors": [],
+  "warnings": [],
+  "hash": "17c8bf0ea76ca12d1918",
+  "publicPath": "/static/",
+  "outputPath": "C:\\Users\\mleet\\illkata\\build\\static",
+  "assetsByChunkName": {
+    "illkata": "illkata.module.js"
+  },
+  "assets": [
+    {
+      "name": "illkata.module.js",
+      "size": 7041786,
+      "chunks": [
+        "illkata"
+      ],
+      "chunkNames": [
+        "illkata"
+      ],
+      "info": {},
+      "emitted": true
+    }
+  ],
+  "filteredAssets": 3,
+  "namedChunkGroups": {
+    "illkata": {
+      "chunks": [
+        "illkata"
+      ],
+      "assets": [
+        "illkata.module.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "generator": "loadable-components",
+  "chunks": [
+    {
+      "id": "illkata",
+      "files": [
+        "illkata.module.js"
+      ]
+    }
+  ]
+}

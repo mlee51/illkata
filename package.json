@@ -1,0 +1,31 @@
+{
+  "name": "illkata",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Frontity project",
+  "keywords": [
+    "frontity"
+  ],
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
+  "scripts": {
+    "dev": "frontity dev",
+    "build": "frontity build",
+    "serve": "frontity serve"
+  },
+  "prettier": {},
+  "dependencies": {
+    "@frontity/core": "^1.14.0",
+    "@frontity/html2react": "^1.7.0",
+    "@frontity/mars-theme": "./packages/mars-theme",
+    "@frontity/tiny-router": "^1.4.2",
+    "@frontity/wp-source": "^1.11.4",
+    "dayjs": "^1.10.4",
+    "frontity": "^1.15.0",
+    "hamburger-react": "^2.4.1",
+    "mytheme": "file:packages/mytheme",
+    "react-spring": "^9.1.2"
+  }
+}
