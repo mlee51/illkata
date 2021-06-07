@@ -48,16 +48,15 @@ const Root = ({ state }) => {
     const [splash, setSplash] = useState(true);
 
     //console.log(window.innerWidth);
-    var settings = {
-        dots: false,
-        infinite: true,
-        speed: 600,
-        autoplay: true,
-        autoplaySpeed: 400,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false
-    };
+
+
+
+    const pfade = useSpring({
+        // padding: hovered ? "0.1vw" : "2vw", "10vw" : "6vw",
+         opacity: splash ? "0%" : "100%",
+     
+         config: config.slow
+       });
 
     return (
         <>
@@ -107,10 +106,10 @@ const Root = ({ state }) => {
             {splash ? <>  <Toff  onClick={() => setSplash(false) }>
                 <animated.div style={props}><Simg src={Logo} /></animated.div>
             </Toff>
-            <animated.div style={props}><Video /></animated.div></> :
+            <animated.div style={props}><div onClick={() => setSplash(false)} ><Video /></div></animated.div></> :
                 <>
 
-                    {page == "home" && <Sbg style={bwfade} src={shirtbg} />}
+                    {page == "home" && <Sbg style={pfade} src={shirtbg} />}
 
                     <Toff>
                         <animated.div style={props}><Simg src={Logo} /></animated.div>

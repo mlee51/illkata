@@ -1,4 +1,5 @@
 {
+  "homepage": "http://mlee51.github.io/illkata",
   "name": "illkata",
   "version": "1.0.0",
   "private": true,
@@ -11,6 +12,8 @@
     "npm": ">=6.0.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "dev": "frontity dev",
     "build": "frontity build",
     "serve": "frontity serve"
@@ -27,5 +30,8 @@
     "hamburger-react": "^2.4.1",
     "mytheme": "file:packages/mytheme",
     "react-spring": "^9.1.2"
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.0"
   }
 }

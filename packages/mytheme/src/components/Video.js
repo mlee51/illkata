@@ -1,13 +1,15 @@
 import React from "react"
 import { css, styled } from "frontity"
-import sample from '-!file-loader!../images/splash.mp4'
+import sample from '-!file-loader!../images/giphy.gif'
 
 const Video = () => {
     return (
         <Fullscreen>
+            <img src={sample} />
+            {/*
             <Svideo className='videoTag' autoPlay loop muted>
-                <source src={sample} type='video/mp4' />
-            </Svideo>
+            <source src={sample} type='video/mp4' />
+            </Svideo>*/}
         </Fullscreen>
     )
 }
