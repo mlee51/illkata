@@ -1,25 +1,34 @@
 {
   "errors": [],
   "warnings": [],
-  "hash": "280557c2321ed322b396",
+  "hash": "dfd5125dcb266f960ad6",
   "publicPath": "/static/",
   "outputPath": "C:\\Users\\mleet\\illkata\\build\\static",
   "assetsByChunkName": {
-    "illkata": [
-      "illkata.module.js",
-      "illkata.f6c1cb079cdf300ec480.hot-update.js"
-    ]
+    "illkata": "illkata.module.js"
   },
-  "assets": [],
-  "filteredAssets": 6,
+  "assets": [
+    {
+      "name": "illkata.module.js",
+      "size": 7116536,
+      "chunks": [
+        "illkata"
+      ],
+      "chunkNames": [
+        "illkata"
+      ],
+      "info": {},
+      "emitted": true
+    }
+  ],
+  "filteredAssets": 5,
   "namedChunkGroups": {
     "illkata": {
       "chunks": [
         "illkata"
       ],
       "assets": [
-        "illkata.module.js",
-        "illkata.f6c1cb079cdf300ec480.hot-update.js"
+        "illkata.module.js"
       ],
       "children": {},
       "childAssets": {}
@@ -30,8 +39,7 @@
     {
       "id": "illkata",
       "files": [
-        "illkata.module.js",
-        "illkata.f6c1cb079cdf300ec480.hot-update.js"
+        "illkata.module.js"
       ]
     }
   ]

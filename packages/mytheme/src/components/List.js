@@ -35,7 +35,7 @@ const Simg = styled.img`
 
 
 const Items = styled.div`
-    margin-top: 17%;
+    //margin-top: 17%;
   & > a {
     display: block;
     margin: 6px 0;

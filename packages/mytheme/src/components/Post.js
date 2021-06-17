@@ -35,9 +35,14 @@ const Title = styled.div`
 
 
 const Postwrap = styled.div`
- margin-top: 17%;
+ //margin-top: 17%;
 
-
+padding-top: 5%;
+@media (orientation: landscape) {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
  & > h2 {
      font-size: 2em;
   }

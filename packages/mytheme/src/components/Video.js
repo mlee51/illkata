@@ -1,16 +1,13 @@
 import React from "react"
 import { css, styled } from "frontity"
-import sample from '-!file-loader!../images/giphy.gif'
+import sample from '../images/splash2.gif'
 
 const Video = () => {
     return (
-        <Fullscreen>
-            <img src={sample} />
-            {/*
-            <Svideo className='videoTag' autoPlay loop muted>
-            <source src={sample} type='video/mp4' />
-            </Svideo>*/}
-        </Fullscreen>
+        <Fullscreen/>
+           
+            
+         
     )
 }
 
@@ -27,11 +24,15 @@ z-index: -1;
 
 const Fullscreen = styled.div`
 position: fixed;
-top: 25%;
-background-color: black;
-z-index: 0;
+height: 100%;
 
-width: 100%;
+background-image: url(${sample});
+
+z-index: 0;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+
 height: 100%; 
 
 

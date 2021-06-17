@@ -6,11 +6,13 @@ import List from './List'
 import Post from './Post'
 import Page from './Page'
 import { Squash as Hamburger } from 'hamburger-react'
-import { useSpring, animated, config } from 'react-spring'
-import Logo from '../logo.png'
+import { useSpring, animated, config, useTransition } from 'react-spring'
+import Logo from '../images/logo2.png'
 import shirtbg from '../images/lesgomini.jpg'
 import useWindowDimensions from './useWindow'
 import Video from "./Video"
+import IG from "../images/ig.svg"
+import KATA from "../images/kata.png"
 
 
 
@@ -27,13 +29,16 @@ const Video2 = () => {
 
 
 
-const Component = () => {
-    const { height, width } = useWindowDimensions();
+const Contact = () => {
 
     return (
-        <div>
-            width: {width} ~ height: {height}
-        </div>
+        <Footer>
+
+            <a href="mailto:prepxxx32@gmail.com">CONTACT</a>
+            <br/>
+
+            <a href="https://www.instagram.com/illkata/"><Icon src={IG} /></a><a href="https://youtube.com/channel/UCZUqU43V3G7TTI_afJVqKuQ"><Icon src={KATA} /></a>
+        </Footer>
     );
 }
 
@@ -50,30 +55,57 @@ const Root = ({ state }) => {
     //console.log(window.innerWidth);
 
 
-
+    const [show, set] = useState(true)
+    const transitions = useTransition(splash, {
+        from: { opacity: 0 },
+        enter: { opacity: 1 },
+        leave: { opacity: 0 },
+        reverse: splash,
+        delay: 300,
+        config: config.molasses
+    })
     const pfade = useSpring({
         // padding: hovered ? "0.1vw" : "2vw", "10vw" : "6vw",
-         opacity: splash ? "0%" : "100%",
-     
-         config: config.slow
-       });
+        opacity: splash ? "0%" : "100%",
+        filter: splash ? "saturate(0%)" : "saturate(100%)",
+        config: config.molasses
+    });
+    let button;
+    let footer;
+    if ((page == "home") || splash || isOpen) {
+        footer = <Contact />;
+    } else {
+        footer = <></>;
+    }
+
+    if ((page == "home") || splash) {
+        button = <Banner src={Logo} />;
+    } else {
+        button = <></>;
+    }
 
     return (
         <>
 
             <Global styles={css`
+            @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
             * {
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
                 width: 100%;
-              
+               
+              }
+              &::-webkit-scrollbar {
+                display: none;
               }
                 html {
                     color: white;
+                    
+                    //overflow: hidden;
                     background-color: black;
                     width: 100%;
-                    font-family: system-ui, Verdana, Arial, sans-serif;
+                    font-family: 'Lato', sans-serif;
                     img {
                         width: 100%;
                         height: auto;
@@ -93,42 +125,37 @@ const Root = ({ state }) => {
                     <Simg onClick={() => setOpen(!isOpen)} src={Logo} />
                     <br />
 
-                    <Link onClick={() => { setOpen(!isOpen); setPage("home"); setSplash(false) }} link="/">Home</Link>
+                    <Link onClick={() => { setOpen(!isOpen); setPage("home"); setSplash(false) }} link="/">HOME</Link>
                     <br />
-                    <Link onClick={() => { setOpen(!isOpen); setPage("blog"); setSplash(false) }} link="/">Blog</Link>
+                    <Link onClick={() => { setOpen(!isOpen); setPage("blog"); setSplash(false) }} link="/">BLOG</Link>
                     <br />
-                    <Link link="/about-us">Store</Link>
+                    <Link onClick={() => { setOpen(!isOpen); setPage("store"); setSplash(false) }} link="/store">KHARMARCY</Link>
                     <br />
-                    <Link link="/about-us">About Us</Link>
+                    <Link onClick={() => { setOpen(!isOpen); setPage("about"); setSplash(false) }} link="/about">ABOUT</Link>
                     <br />
                 </Menu>
             </>}
-            {splash ? <>  <Toff  onClick={() => setSplash(false) }>
-                <animated.div style={props}><Simg src={Logo} /></animated.div>
-            </Toff>
-            <animated.div style={props}><div onClick={() => setSplash(false)} ><Video /></div></animated.div></> :
+            {button}
+            {transitions(
+                (styles, item) => item && <>
+                    <animated.div style={styles}><div onClick={() => setSplash(false)} ><Video /></div></animated.div></>
+            )}
+            {!splash &&
                 <>
 
                     {page == "home" && <Sbg style={pfade} src={shirtbg} />}
-
-                    <Toff>
-                        <animated.div style={props}><Simg src={Logo} /></animated.div>
-                    </Toff>
-
-
-
-
                     {page == "home" &&
                         <animated.div style={props}>
                             <Homedesc>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vestibulum magna in scelerisque pretium. Quisque metus elit, sollicitudin quis tincidunt vel, vehicula eu eros. Quisque ullamcorper in risus vel porta. Nullam pharetra, ipsum ut eleifend egestas, erat lorem luctus lectus.
-                    </Homedesc>
+                                <b>WELCOME TO THE SANCTUM</b>
+                            </Homedesc>
                         </animated.div>}
 
                     <main>
                         <Tdiv>
 
                         </Tdiv>
+                        
                         <Switch>
                             {page == "blog" && <List when={data.isArchive} />}
                             <Post when={data.isPost} />
@@ -137,6 +164,7 @@ const Root = ({ state }) => {
                         {data.isPost && <><strong><Return><Link onClick={() => setPage("blog")} link="/">Back</Link></Return></strong><br /><br /><br /></>}
                     </main>
                 </>}
+            {footer}
         </>
     );
 };
@@ -164,7 +192,10 @@ text-decoration: none;
 
 const Homedesc = styled.div`
 padding: 15%;
-color: white;
+font-size: 1.2em;
+color: rgb(236,15,113);
+text-align: center;
+padding-top: 45%;
 `
 
 const Sbg = styled(animated.img)`
@@ -179,17 +210,35 @@ const Mdiv = styled.div`
 transform-origin: top right;
 transform: scale(1);
 position: fixed;
-z-index: 3;
+z-index: 4;
 width: auto;
 right:0;
 `
 
 const Toff = styled.div`
+
+padding-top: ${(props) => props.splash ? "12.5%" : "0%"};
+`
+
+const Banner = styled.img`
+position: fixed;
 padding-top: 12.5%;
+left: 30%;
+width: 40%;
+height: auto;
+//height: 40%;
+z-index: 1;
+`
+
+const Icon = styled.img`
+height: 1em;
+width: auto;
+filter: invert(1);
 `
 
 const Simg = styled.img`
-width: 40%;
+//position: fixed;
+width: 10rem;
 display: block;
 height: auto;
 //height: 40%;
@@ -206,7 +255,23 @@ const Flexgrow = styled.div`
 flex-grow: 4;
 
 `
-
+const Footer = styled.div`
+    position: fixed;
+    display: inline-block;
+    left: 0;
+    bottom: 0;
+    font-size: 1.6em;
+    width: 100%;
+    //background-color: red;
+    color: grey;
+    z-index: 2;
+    text-align: center;
+    & > a {
+        color: white;
+        text-decoration: none;
+      }
+    
+  `
 const Header = styled.header`
 background-color: green;
 position: fixed;
@@ -219,13 +284,13 @@ display: flex;
 `
 const Menu = styled.nav`
  position: fixed;
- width: 100%;
+ height: 100%;
 top: 0;
 padding-top: 12.5%;
 margin-top : 0;
   text-align: center;
-  font-size: 10vw;
-  z-index: 1;
+  font-size: 2.5rem;
+  z-index: 3;
   line-height: 1.5;
   background-color: black;
   height: 100%;
